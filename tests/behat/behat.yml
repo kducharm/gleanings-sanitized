@@ -1,0 +1,30 @@
+default:
+  suites:
+    default:
+      paths:
+        - %paths.base%/features
+      contexts:
+        - Drupal\ContentModelContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\UserRoleAndPermissionsContext
+  extensions:
+    Behat\MinkExtension:
+      default_session: goutte
+      browser_name: chrome
+      javascript_session: default
+      goutte: ~
+      files_path: "%paths.base%/media"
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: "drupal"
+    jarnaiz\JUnitFormatter\JUnitFormatterExtension:
+        filename: report.xml
+        outputDir: %paths.base%/build/tests
+    Bex\Behat\ScreenshotExtension:
+      screenshot_taking_mode: failed_steps
+      image_drivers:
+        local:
+          screenshot_directory: /tmp
