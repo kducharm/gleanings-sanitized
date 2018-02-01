@@ -143,6 +143,7 @@ class ContentModelContext extends FeatureContext implements Context {
         /** @var string[] $ids */
         $ids = \Drupal::entityQuery('field_config')
           ->condition('bundle', $bundle->id())
+          ->condition('entity_type', $entity_type->id())
           ->execute();
 
         if (!$ids) {
